@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, {useState, useRef} from "react";
 import {
     StyleSheet,
     Text,
@@ -46,7 +46,12 @@ function ExtensionView() {
     };
 
     return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, paddingBottom: 20}}>
+            <TouchableOpacity onPress={()=>{statusAPI.close()}}>
+                <View style={{height: 26, width: 26, marginTop: 10, marginLeft: 10, alignItems: "center", justifyContent: "center"}}>
+                    <Text style={{fontWeight: "bold"}}>X</Text>
+                </View>
+            </TouchableOpacity>
             <ScrollView keyboardShouldPersistTaps={"handled"}>
                 <View>
                     <SectionView
@@ -55,7 +60,7 @@ function ExtensionView() {
                         values={yesterday}
                         setValues={setYesterday}
                     />
-                    <SectionView title={"Today"} values={today} setValues={setToday} />
+                    <SectionView title={"Today"} values={today} setValues={setToday}/>
                     <SectionView
                         title={"Blockers"}
                         values={blockers}
@@ -64,10 +69,10 @@ function ExtensionView() {
                 </View>
             </ScrollView>
             <TouchableOpacity
-                style={{ alignSelf: "center" }}
+                style={{alignSelf: "center"}}
                 onPress={() => handleSend()}
             >
-                <Text style={{ fontSize: 24, marginTop: 20, color: "#4360df" }}>
+                <Text style={{fontSize: 24, marginTop: 20, color: "#4360df"}}>
                     Send
                 </Text>
             </TouchableOpacity>
@@ -83,7 +88,7 @@ function SectionView(props) {
 
     const handleAddTodo = () => {
         if (value.length > 0) {
-            setTodos([...todos, { text: value, key: Date.now(), checked: false }]);
+            setTodos([...todos, {text: value, key: Date.now(), checked: false}]);
             setValue("");
         }
         inp.current.clear();
@@ -114,8 +119,8 @@ function SectionView(props) {
                     ref={inp}
                 />
                 <TouchableOpacity onPress={() => handleAddTodo()}>
-                    <View style={{ marginLeft: 10, paddingHorizontal: 10 }}>
-                        <Text style={{ fontSize: 30, color: "#4360df" }}>+</Text>
+                    <View style={{marginLeft: 10, paddingHorizontal: 10}}>
+                        <Text style={{fontSize: 30, color: "#4360df"}}>+</Text>
                     </View>
                 </TouchableOpacity>
             </View>
